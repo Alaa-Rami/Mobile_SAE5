@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp">
+
+    <!-- EditText pour le nom du patient -->
+    <EditText
+        android:id="@+id/etPatientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom du patient"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:importantForAccessibility="yes"/>
+
+    <!-- EditText pour la date de l'ordonnance -->
+    <EditText
+        android:id="@+id/etDateOrdonnance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date de l'ordonnance"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:importantForAccessibility="yes"/>
+
+    <!-- EditText pour les médicaments -->
+    <EditText
+        android:id="@+id/etMedicaments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Médicaments"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:importantForAccessibility="yes"/>
+
+    <!-- Button pour sauvegarder -->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sauvegarder"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:importantForAccessibility="yes"/>
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050002725057",
+    "project_id": "gestionordonnances2",
+    "storage_bucket": "gestionordonnances2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050002725057:android:e409a350390a32b735dc40",
+        "android_client_info": {
+          "package_name": "tn.pharmacy.gestionordonnances2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhfzKyTzU49EZsXpRPn2Qk0-okzMAPDhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
