@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,6 +67,11 @@ public class OrdonnanceAdapter extends RecyclerView.Adapter<OrdonnanceAdapter.Or
             intent.putExtra("ordonnanceId", ordonnance.getId());
             context.startActivity(intent);
         });
+
+        // Archivage d'une ordonnance
+        holder.btnArchive.setOnClickListener(v -> {
+            archiveOrdonnance(position);
+        });
     }
 
     @Override
@@ -75,7 +82,7 @@ public class OrdonnanceAdapter extends RecyclerView.Adapter<OrdonnanceAdapter.Or
     // ViewHolder pour les éléments de la liste
     public static class OrdonnanceViewHolder extends RecyclerView.ViewHolder {
         TextView tvPatientName, tvDateOrdonnance, tvMedicaments;
-        Button btnModifier, btnSupprimer;
+        Button btnModifier, btnSupprimer, btnArchive;
 
         public OrdonnanceViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +91,36 @@ public class OrdonnanceAdapter extends RecyclerView.Adapter<OrdonnanceAdapter.Or
             tvMedicaments = itemView.findViewById(R.id.tvMedicaments);
             btnModifier = itemView.findViewById(R.id.btnModifier);
             btnSupprimer = itemView.findViewById(R.id.btnSupprimer);
+            btnArchive = itemView.findViewById(R.id.btnArchive); // Ajouter ici le bouton d'archivage
         }
     }
+
+    // Méthode pour archiver l'ordonnance
+    private void archiveOrdonnance(int position) {
+        Ordonnance ordonnance = ordonnanceList.get(position);
+        String ordonnanceId = ordonnance.getId();
+
+        // Déplacer l'ordonnance vers la collection "archived_ordonnances"
+        firestore.collection("archived_ordonnances").document(ordonnanceId)
+                .set(ordonnance)
+                .addOnSuccessListener(aVoid -> {
+                    // Supprimer l'ordonnance de la collection "ordonnances"
+                    firestore.collection("ordonnances").document(ordonnanceId)
+                            .delete()
+                            .addOnSuccessListener(aVoid1 -> {
+                                // Retirer l'élément de la liste et notifier l'adaptateur
+                                ordonnanceList.remove(position);
+                                notifyItemRemoved(position);
+                                // Afficher un message de confirmation
+                                Toast.makeText(context, "Ordonnance archivée", Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(context, "Erreur de suppression", Toast.LENGTH_SHORT).show();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(context, "Erreur d'archivage", Toast.LENGTH_SHORT).show();
+                });
+    }
 }
+

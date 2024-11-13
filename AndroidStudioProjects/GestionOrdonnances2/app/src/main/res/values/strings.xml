@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GestionOrdonnances2</string>
+    <string-array name="date_filter_options">
+        <item>Toutes</item>
+        <item>Aujourdhui</item>
+        <item>Cette semaine</item>
+        <item>Ce mois-ci</item>
+    </string-array>
+
 </resources>

@@ -44,6 +44,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Supprimer" />
+        <Button
+            android:id="@+id/btnArchive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Archiver"
+            android:backgroundTint="@android:color/holo_orange_light" />
     </LinearLayout>
 
 </LinearLayout>

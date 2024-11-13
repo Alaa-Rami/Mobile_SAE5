@@ -4,7 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Ajoutez un conteneur avec l'ID 'main' -->
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Rechercher par nom, date ou médicament"
+        android:padding="16dp"
+        android:textSize="16sp" />
+
+    <!-- Spinner pour filtrer par date -->
+    <Spinner
+        android:id="@+id/dateFilterSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- Case à cocher pour filtrer par médicaments -->
+    <CheckBox
+        android:id="@+id/medicamentsFilterCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtrer par médicaments"
+        android:padding="16dp" />
+
+
     <LinearLayout
         android:id="@+id/main"
         android:orientation="vertical"

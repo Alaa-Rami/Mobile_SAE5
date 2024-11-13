@@ -2,7 +2,14 @@ package tn.pharmacy.gestionordonnances2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,11 +28,14 @@ import tn.pharmacy.gestionordonnances2.entities.Ordonnance;
 
 public class OrdonnanceListActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE_MODIFY = 1;
     private RecyclerView recyclerView;
     private OrdonnanceAdapter ordonnanceAdapter;
     private List<Ordonnance> ordonnanceList;
+    private List<Ordonnance> filteredList;
     private FirebaseFirestore db;
+    private EditText searchEditText;
+    private Spinner dateFilterSpinner;
+    private CheckBox medicamentsFilterCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,54 +44,97 @@ public class OrdonnanceListActivity extends AppCompatActivity {
 
         // Initialisation des éléments
         recyclerView = findViewById(R.id.recyclerViewOrdonnances);
+        searchEditText = findViewById(R.id.searchEditText);
+        dateFilterSpinner = findViewById(R.id.dateFilterSpinner);
+        medicamentsFilterCheckBox = findViewById(R.id.medicamentsFilterCheckBox);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         ordonnanceList = new ArrayList<>();
-        ordonnanceAdapter = new OrdonnanceAdapter(this, ordonnanceList);
+        filteredList = new ArrayList<>();
+        ordonnanceAdapter = new OrdonnanceAdapter(this, filteredList);
         recyclerView.setAdapter(ordonnanceAdapter);
 
         // Initialisation de Firestore
         db = FirebaseFirestore.getInstance();
 
-        // Chargement des données depuis Firestore
+        // Charger les données depuis Firestore
         fetchOrdonnancesFromFirestore();
+
+        // Initialiser le Spinner avec des dates spécifiques (exemple)
+        ArrayAdapter<CharSequence> dateAdapter = ArrayAdapter.createFromResource(this,
+                R.array.date_filter_options, android.R.layout.simple_spinner_item);
+        dateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dateFilterSpinner.setAdapter(dateAdapter);
+
+        // Ajouter un écouteur pour la recherche et les filtres
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                filterList();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+        // Filtrer lors de la sélection dans le Spinner de date
+        dateFilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                filterList();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                filterList();
+            }
+        });
+
+        // Filtrer lors de l'activation ou désactivation de la case à cocher "Filtrer par médicaments"
+        medicamentsFilterCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> filterList());
     }
 
     private void fetchOrdonnancesFromFirestore() {
         db.collection("ordonnances")
-                .get()  // Récupérer toutes les ordonnances de la collection
+                .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        ordonnanceList.clear();  // On vide la liste pour éviter les doublons
+                        ordonnanceList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Ordonnance ordonnance = document.toObject(Ordonnance.class);
-                            ordonnance.setId(document.getId());  // Assignation de l'ID Firestore à l'objet ordonnance
+                            ordonnance.setId(document.getId());
                             ordonnanceList.add(ordonnance);
                         }
-                        ordonnanceAdapter.notifyDataSetChanged();  // Notifier l'adaptateur des changements
+                        filteredList.addAll(ordonnanceList);
+                        ordonnanceAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(OrdonnanceListActivity.this, "Erreur de chargement des données", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+    private void filterList() {
+        filteredList.clear();
+        String query = searchEditText.getText().toString().toLowerCase();
+        String selectedDateFilter = (String) dateFilterSpinner.getSelectedItem();
+        boolean filterByMedicaments = medicamentsFilterCheckBox.isChecked();
 
-    public void onItemClick(Ordonnance ordonnance) {
-        Intent intent = new Intent(OrdonnanceListActivity.this, ModifierOrdonnanceActivity.class);
-        intent.putExtra("ordonnanceId", ordonnance.getId());
-        startActivityForResult(intent, REQUEST_CODE_MODIFY);  // Appel de ModifierOrdonnanceActivity
-    }
+        for (Ordonnance ordonnance : ordonnanceList) {
+            boolean matchesQuery = ordonnance.getPatientName().toLowerCase().contains(query) ||
+                    ordonnance.getMedicaments().toLowerCase().contains(query) ||
+                    ordonnance.getDate().contains(query);
+            boolean matchesDate = selectedDateFilter.equals("Toutes") || ordonnance.getDate().equals(selectedDateFilter);
+            boolean matchesMedicaments = !filterByMedicaments || ordonnance.getMedicaments().toLowerCase().contains(query);
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE_MODIFY && resultCode == RESULT_OK) {
-            String updatedOrdonnanceId = data.getStringExtra("updatedOrdonnanceId");
-
-
-
-            fetchOrdonnancesFromFirestore();
+            if (matchesQuery && matchesDate && matchesMedicaments) {
+                filteredList.add(ordonnance);
+            }
         }
+        ordonnanceAdapter.notifyDataSetChanged();
     }
 }
+
