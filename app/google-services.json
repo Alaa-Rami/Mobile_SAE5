@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1045828989706",
+    "project_id": "medicines-management-firebase",
+    "storage_bucket": "medicines-management-firebase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045828989706:android:31fcc65c484a8a4ef180f3",
+        "android_client_info": {
+          "package_name": "tn.pharmacy.medicinesmanagement"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGKc53gMGH-dq4SMe4NElGMFtiTJywpuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

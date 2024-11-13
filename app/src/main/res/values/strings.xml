@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MedicinesManagement</string>
+    <string name="add_medecine">Add Medecine</string>
+    <string name="medecine_name">Medicine Name</string>
+    <string name="medecine_description">Medicine Description</string>
+    <string name="medecine_price">Medicine Price</string>
+    <string name="medecine_quantity">Medicine Quantity</string>
+    <string name="medecine_image_url">Medicine Image URL</string>
+    <string name="select_image">Select Image</string>
+    <string name="selected_image">Selected Medicine Image</string>
+    <string name="Select_Image">Selected Medicine Image</string>
+</resources>
