@@ -12,13 +12,13 @@
         android:padding="16dp"
         android:textSize="16sp" />
 
-    <!-- Spinner pour filtrer par date -->
+
     <Spinner
         android:id="@+id/dateFilterSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <!-- Case à cocher pour filtrer par médicaments -->
+
     <CheckBox
         android:id="@+id/medicamentsFilterCheckBox"
         android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- RecyclerView pour afficher la liste des ordonnances -->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewOrdonnances"
             android:layout_width="match_parent"

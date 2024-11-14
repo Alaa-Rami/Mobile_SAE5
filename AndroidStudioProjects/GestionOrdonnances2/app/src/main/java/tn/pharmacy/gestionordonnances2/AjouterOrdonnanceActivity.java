@@ -59,7 +59,7 @@ public class AjouterOrdonnanceActivity extends AppCompatActivity {
                 .add(ordonnance)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(AjouterOrdonnanceActivity.this, "Ordonnance ajoutée avec succès", Toast.LENGTH_SHORT).show();
-                    finish(); // Fermer l'activité après l'ajout
+                    finish();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AjouterOrdonnanceActivity.this, "Erreur lors de l'ajout", Toast.LENGTH_SHORT).show();

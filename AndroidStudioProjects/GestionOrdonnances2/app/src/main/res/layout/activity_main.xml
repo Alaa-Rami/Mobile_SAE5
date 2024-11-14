@@ -8,8 +8,19 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gestion des Ordonnances"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:gravity="center"/>
 
-    <!-- Le bouton Ajouter Ordonnance -->
     <Button
         android:id="@+id/buttonAjouterOrdonnance"
         android:layout_width="wrap_content"
@@ -20,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Le bouton Afficher Ordonnances -->
+    
     <Button
         android:id="@+id/btnShowOrdonnances"
         android:layout_width="wrap_content"

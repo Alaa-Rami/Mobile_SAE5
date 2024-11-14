@@ -7,7 +7,7 @@
     android:paddingTop="24dp"
     android:paddingBottom="24dp">
 
-    <!-- EditText pour le nom du patient -->
+
     <EditText
         android:id="@+id/etPatientName"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:textSize="16sp"
         android:importantForAccessibility="yes"/>
 
-    <!-- EditText pour la date de l'ordonnance -->
+
     <EditText
         android:id="@+id/etDateOrdonnance"
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         android:textSize="16sp"
         android:importantForAccessibility="yes"/>
 
-    <!-- EditText pour les médicaments -->
+
     <EditText
         android:id="@+id/etMedicaments"
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
         android:textSize="16sp"
         android:importantForAccessibility="yes"/>
 
-    <!-- Button pour sauvegarder -->
+
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"

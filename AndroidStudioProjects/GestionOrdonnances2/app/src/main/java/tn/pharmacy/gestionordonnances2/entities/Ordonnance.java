@@ -7,18 +7,18 @@ public class Ordonnance {
     private String date;
     private String medicaments;
 
-    // Constructeur sans paramètre (facultatif, mais souvent utilisé)
+
     public Ordonnance() {
     }
 
-    // Constructeur avec paramètres
+
     public Ordonnance(String patientName, String date, String medicaments) {
         this.patientName = patientName;
         this.date = date;
         this.medicaments = medicaments;
     }
 
-    // Getters et setters
+
 
     public String getId() {
         return id;
