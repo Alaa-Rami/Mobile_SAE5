@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">E-Pharmacy</string>
+    <string name="welcome_head_profile">Welcome, %1$s!</string>
+    <string name="profile_authenticated">Your profile has been authenticated (verified) .</string>
+    <string name="change_pwd_now">You can change your password now .</string>
+    <string name="register">Register</string>
+    <string name="click_here_to_reset"><u>Click here to reset</u></string>
+    <string name="upload_pic_u">Upload Picture</string>
+    <string name="update_email_u">Update your Email</string>
+    <string name="user_display_picture">Upload your image</string>
+    <string name="loading">Loading</string>
+    <string name="name">Enter your FullName</string>
+    <string name="email">Enter you Email</string>
+    <string name="dob">Enter you date of Birth</string>
+    <string name="gender">Check your Gender</string>
+    <string name="mobile">Enter your mobile number</string>
+    <string name="registered_user_since">User registered since</string>
+
+</resources>
