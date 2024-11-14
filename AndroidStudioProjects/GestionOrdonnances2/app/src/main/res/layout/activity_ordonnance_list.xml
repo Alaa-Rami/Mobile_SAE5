@@ -2,42 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp">
 
+    <!-- Barre de recherche -->
     <EditText
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Rechercher par nom, date ou médicament"
-        android:padding="16dp"
-        android:textSize="16sp" />
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
 
-
+    <!-- Spinner pour filtrer par date -->
     <Spinner
         android:id="@+id/dateFilterSpinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" />
 
-
+    <!-- Checkbox pour filtrer par médicaments -->
     <CheckBox
         android:id="@+id/medicamentsFilterCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Filtrer par médicaments"
-        android:padding="16dp" />
+        android:padding="8dp"
+        android:layout_marginBottom="16dp" />
 
-
-    <LinearLayout
-        android:id="@+id/main"
-        android:orientation="vertical"
+    <!-- RecyclerView pour afficher les ordonnances -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewOrdonnances"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewOrdonnances"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
 </LinearLayout>

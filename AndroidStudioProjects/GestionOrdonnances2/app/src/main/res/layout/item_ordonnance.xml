@@ -3,51 +3,70 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:elevation="4dp"
+    android:layout_margin="8dp"
+    android:backgroundTint="@android:color/background_light"
+    >
 
+    <!-- Nom du patient -->
     <TextView
         android:id="@+id/tvPatientName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nom du patient : "
-        android:textSize="16sp" />
+        android:text="Nom du patient :"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingBottom="4dp" />
 
+    <!-- Date de l'ordonnance -->
     <TextView
         android:id="@+id/tvDateOrdonnance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date : "
-        android:textSize="16sp" />
+        android:text="Date :"
+        android:textSize="16sp"
+        android:paddingBottom="4dp" />
 
+    <!-- Médicaments de l'ordonnance -->
     <TextView
         android:id="@+id/tvMedicaments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Médicaments : "
-        android:textSize="16sp" />
+        android:text="Médicaments :"
+        android:textSize="16sp"
+        android:paddingBottom="8dp" />
 
+    <!-- Boutons d'action -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:paddingTop="8dp">
 
         <Button
             android:id="@+id/btnModifier"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Modifier" />
+            android:text="Modifier"
+            android:backgroundTint="@android:color/holo_blue_light" />
 
         <Button
             android:id="@+id/btnSupprimer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Supprimer" />
+            android:text="Supprimer"
+            android:backgroundTint="@android:color/holo_red_light" />
+
         <Button
             android:id="@+id/btnArchive"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Archiver"
             android:backgroundTint="@android:color/holo_orange_light" />
     </LinearLayout>
