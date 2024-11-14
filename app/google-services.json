@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "106162663326",
+    "project_id": "gestiondespharmacies",
+    "storage_bucket": "gestiondespharmacies.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106162663326:android:4c0f99421acfd002c0f08f",
+        "android_client_info": {
+          "package_name": "tn.pharmacy.gestiondespharmacies"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkc9_zDc8Ijg4M65JonqCfQIqSctEnEG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
